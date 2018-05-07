@@ -7,6 +7,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class TodoListComponent implements OnInit, OnChanges {
 	@Input() data: any[];
+	@Input() filteredData: any[];
 	public taskName = '';
 	public selectedItems: any[];
 	constructor() {}
@@ -52,5 +53,13 @@ export class TodoListComponent implements OnInit, OnChanges {
 			this.data[index].isSelected = true;
 		}
 		this.itemsSelected();
+	}
+
+	showAll(filter?: boolean) {
+		if (filter !== undefined) {
+			this.filteredData = this.data.filter((item) => item.isSelected === filter);
+		} else {
+			this.filteredData = this.data;
+		}
 	}
 }

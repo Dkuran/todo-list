@@ -5,14 +5,19 @@
       </div>
       <div>
         <ul class="content_list">
-          <div *ngFor="let item of data; let i=index" class="content_list-container">
+          <div *ngFor="let item of filteredData; let i=index" class="content_list-container">
               <!-- class="content_list-button" -->
               <button  (click)="selectItem(i)" [ngClass]=" item.isSelected ? 'content_list-button-selected' : 'content_list-button'"></button><li class="content_list-item" [ngClass]="item.isSelected ? 'strikethrough' : 'no-strikethrough'">{{item.text}}</li><button class="content_list-delete_button derecha" (click)="deleteItem(i)">X</button>
           </div>
         </ul>
       </div>
       <div class="footer" *ngIf="data.length !== 0" >
-          <span class="izquierda" *ngIf="data.length !== 0">{{selectedItems.length}} items restantes</span>
-          <span class="derecha" (click)="changeAll(false)">Quitar Todos</span>
+        <ul style="padding: 0px; text-align: center;">
+          <li style="display: inline-flex" *ngIf="data.length !== 0"><span>{{selectedItems.length}} items restantes | </span></li>
+          <li style="display: inline-flex" ><span (click)="showAll()">Todos | </span></li>
+          <li style="display: inline-flex"><span (click)="showAll(true)">Completados | </span></li>
+          <li style="display: inline-flex"><span (click)="showAll(false)">Activos | </span></li>
+          <li style="display: inline-flex"><span (click)="changeAll(false)">Quitar Todos</span></li>
+        </ul>
       </div>
 </div>
